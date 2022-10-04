@@ -1,33 +1,28 @@
 <template>
-  <header class="header">Header</header>
-  
+  <header class="header">
+    <h1 class="title" v-if="$slots.title">
+      <slot name="title"></slot>
+    </h1>
+    <div class="description">
+      <slot name="description"></slot>
+    </div>
+    <div class="content">
+      <slot></slot>
+    </div>
+  </header>
 </template>
 <script>
 export default {
 
-
   mounted(){
-    console.log("sas")
-    window.addEventListener("resize",this.resize)
-  },
-
-  beforeUnmount(){
-    console.log("beforeUnmount");
-    window.removeEventListener("resize",this.resize)
-  },
-  unmounted(){
-    console.log("unmounted");
-  },
-  methods:{
-    resize($evt){
-      console.log($evt)
-    }
+    console.log(this.$slots.description)
   }
+
 };
 </script>
 <style scoped>
- .header{
-  background:#000 ;
+.header {
+  background: #000;
   color: #fff;
- }
+}
 </style>

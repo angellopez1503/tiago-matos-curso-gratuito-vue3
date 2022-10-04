@@ -1,66 +1,28 @@
 <template>
   <div class="container">
-    <the-header v-if="showHeader"></the-header>
-    <h1>Hello World</h1>
-   {{name}}<br>
-   <input type="text" v-model="name">
-   <button @click="showHeader = !showHeader" >Activar / Desactivar</button>
+    <the-header>
+      <template v-slot:title> home </template>
+      <template v-slot:description>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
+          accusamus?
+        </p>
+      </template>
+      Content do header - menu
+    </the-header>
   </div>
 </template>
 
 <script>
-  import TheHeader from '@/components/TheHeader.vue'
+import TheHeader from "@/components/TheHeader.vue";
 export default {
   name: "App",
   components: {
-    TheHeader
+    TheHeader,
   },
   data() {
-    return { 
-      name:"Angel",
-      showHeader:true
-    };
+    return {};
   },
-    
-
-    // beforeUpdate(){
-    //     console.log("beforeUpdate",this.name)
-    // },
-
-    // updated(){
-    //   console.log("updated",this.name)
-    // }
-
-
-
-  // beforeCreate(){
-  //  console.log("beforeCreate")
-  //  console.log('Estado : ',this.name);
-  //  console.log("DOM",this.$el)
-  // },
-  // created(){
-  //   console.log("created");
-  //   console.log('Estado : ',this.name);
-  //   console.log("DOM",this.$el)
-  // },
-  // beforeMount(){
-  //   console.log("beforeAmount");
-  //   console.log('Estado : ',this.name);
-  //   console.log("DOM",this.$el)
-  // },
-  // mounted(){
-  //   console.log("mounted");
-  //   console.log('Estado : ',this.name);
-  //   console.log("DOM",this.$el)
-  // },
-  // beforeUnmounted(){
-  //   console.log("beforeUnmounted");
-  // },
-  // unmounted(){
-  //   console.log("unmounted");
-  // }
-  
-  
 };
 </script>
 
