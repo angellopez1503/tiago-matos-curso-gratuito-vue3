@@ -1,26 +1,32 @@
 <template>
-  <div>
-    {{ fullName }}<br>
-    <h2>Todos en aberto</h2>
-    <div v-for="todo in unCompletedTodos" :key="todo.id">
-      {{todo.title}} - <span> {{ todo.completed }} </span>
-    </div>
+  <div class="container">
     <br>
-    <h2> Todos completas</h2>
-    <div v-for="todo in completedTodos" :key="todo.id">
-      {{ todo.title }} <span>{{ todo.completed }}</span>
-    </div>
+    <input 
+      type="text"
+      v-model="name"
+    >
+    <br>
+    {{ name }}
     <br><br>
-    <h2>Todos</h2>
-    <div v-for="todo in todos" :key="todo.id">
-      {{ todo.title }} <span>{{ todo.completed }}</span>
-    </div>
-    <br><br>
-    <h2>Todos con checkbox</h2>
-    <div v-for="todo in todos" :key="todo.id">
-    <input type="checkbox" v-model="todo.completed">
-    {{todo.title}}
-    </div>
+    <input 
+      type="text"
+      v-model="user.first_name"
+      ><br>
+    <input 
+      type="text"
+      v-model="user.last_name"
+      ><br>
+      {{ user.first_name }} {{user.last_name}}
+
+    <br><br><br>
+    <select v-model="pageCount">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select><br>
+
+    {{pageCount}}
+
   </div>
 </template>
 
@@ -30,61 +36,46 @@ export default {
   components: {},
   data() {
     return {
-      user: {
-        first_name: "Jon",
-        last_name: "Snow",
-      },
-      todos: [
-        {
-          userId: 1,
-          id: 1,
-          title: "delectus aut autem",
-          completed: false,
-        },
-        {
-          userId: 1,
-          id: 2,
-          title: "quis ut nam facilis et officia qui",
-          completed: false,
-        },
-        {
-          userId: 1,
-          id: 3,
-          title: "fugiat veniam minus",
-          completed: false,
-        },
-        {
-          userId: 1,
-          id: 4,
-          title: "et porro tempora",
-          completed: true,
-        },
-        {
-          userId: 1,
-          id: 5,
-          title:
-            "laboriosam mollitia et enim quasi adipisci quia provident illum",
-          completed: false,
-        },
-      ],
+     name:'',
+     pageCount:5,
+     user:{
+      first_name:'',
+      last_name:''
+     }
     };
   },
-  computed: {
-    fullName() {
-      return `${this.user.first_name} ${this.user.last_name}`;
+  watch:{
+    name(vl){
+      // console.log(newValue,oldValue);
+      if(vl.length >=3){
+      this.saveUserName()
+      }
     },
-    unCompletedTodos(){
-      return this.todos.filter(todo => !todo.completed)
+    pageCount(){
+      this.changePage()
     },
-    completedTodos(){
-      return this.todos.filter(todo => todo.completed)
+    user:{
+      handler(item){
+        console.log('User alterado');
+        if(item.first_name.length>3){
+          console.log("error");
+          
+        }
+      },
+      deep:true
     }
   },
-  methods: {
-    click() {
-      console.log(this.user);
+  methods:{
+    saveUserName(){
+        console.log(this.name);
+      
     },
-  },
+    changePage(){
+      console.log('Ajax changePage')
+    }
+    
+  }
+  
 };
 </script>
 
