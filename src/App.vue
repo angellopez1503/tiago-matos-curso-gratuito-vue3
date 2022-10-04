@@ -1,24 +1,20 @@
 <template>
   <div class="container">
-    <the-header>
-      <template v-slot:title> home </template>
-      <template v-slot:description>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores,
-          accusamus?
-        </p>
-      </template>
-      Content do header - menu
-    </the-header>
+    <div class="card">
+        Test
+    </div>
+    <base-card></base-card>
   </div>
 </template>
 
 <script>
-import TheHeader from "@/components/TheHeader.vue";
+
+import BaseCard from '@/components/BaseCard.vue'
+
 export default {
   name: "App",
   components: {
-    TheHeader,
+    BaseCard
   },
   data() {
     return {};
