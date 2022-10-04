@@ -1,13 +1,26 @@
 <template>
   <div>
-    <button @click.once="onClick">Enviar</button>
-    <br />
-    <div @mouseover="onMouseOver" @mouseout="onMouseOut">Mouse Over</div>
+    {{ fullName }}<br>
+    <h2>Todos en aberto</h2>
+    <div v-for="todo in unCompletedTodos" :key="todo.id">
+      {{todo.title}} - <span> {{ todo.completed }} </span>
+    </div>
+    <br>
+    <h2> Todos completas</h2>
+    <div v-for="todo in completedTodos" :key="todo.id">
+      {{ todo.title }} <span>{{ todo.completed }}</span>
+    </div>
     <br><br>
-    <form action="https://google.com" @submit.prevent="onSubmit">
-      <input class="form-control" type="text" @keyup.enter="onKeyUp" ><br>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </form>
+    <h2>Todos</h2>
+    <div v-for="todo in todos" :key="todo.id">
+      {{ todo.title }} <span>{{ todo.completed }}</span>
+    </div>
+    <br><br>
+    <h2>Todos con checkbox</h2>
+    <div v-for="todo in todos" :key="todo.id">
+    <input type="checkbox" v-model="todo.completed">
+    {{todo.title}}
+    </div>
   </div>
 </template>
 
@@ -16,24 +29,61 @@ export default {
   name: "App",
   components: {},
   data() {
-    return {};
+    return {
+      user: {
+        first_name: "Jon",
+        last_name: "Snow",
+      },
+      todos: [
+        {
+          userId: 1,
+          id: 1,
+          title: "delectus aut autem",
+          completed: false,
+        },
+        {
+          userId: 1,
+          id: 2,
+          title: "quis ut nam facilis et officia qui",
+          completed: false,
+        },
+        {
+          userId: 1,
+          id: 3,
+          title: "fugiat veniam minus",
+          completed: false,
+        },
+        {
+          userId: 1,
+          id: 4,
+          title: "et porro tempora",
+          completed: true,
+        },
+        {
+          userId: 1,
+          id: 5,
+          title:
+            "laboriosam mollitia et enim quasi adipisci quia provident illum",
+          completed: false,
+        },
+      ],
+    };
+  },
+  computed: {
+    fullName() {
+      return `${this.user.first_name} ${this.user.last_name}`;
+    },
+    unCompletedTodos(){
+      return this.todos.filter(todo => !todo.completed)
+    },
+    completedTodos(){
+      return this.todos.filter(todo => todo.completed)
+    }
   },
   methods: {
-    onClick($evt) {
-      console.log("click",$evt);
+    click() {
+      console.log(this.user);
     },
-    onMouseOver($evt) {
-      console.log("mouse over",$evt);
-    },
-    onMouseOut($evt) {
-      console.log("mouse out",$evt);
-    },
-    onSubmit(){
-      console.log("submit");
-    },
-    onKeyUp($evt){
-      console.log("onKeyUp",$evt);
-    }
   },
 };
 </script>
