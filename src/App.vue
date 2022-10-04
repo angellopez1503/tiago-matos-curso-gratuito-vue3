@@ -1,45 +1,14 @@
 <template>
-  <div></div>
-  <input type="text" v-model="name" />
-  <br />
-  {{ name }}
-  <br />
-  <br>
   <div>
-    <select name="" id="" v-model="sports">
-      <option value="futbol">Futbol</option>
-      <option value="skate">Skate</option>
-      <option value="tenis">Tenis</option></select
-    ><br />
-    {{ sports }}
+    <button @click.once="onClick">Enviar</button>
+    <br />
+    <div @mouseover="onMouseOver" @mouseout="onMouseOut">Mouse Over</div>
+    <br><br>
+    <form action="https://google.com" @submit.prevent="onSubmit">
+      <input class="form-control" type="text" @keyup.enter="onKeyUp" ><br>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
   </div>
-  <br /><br />
-  <div>
-    <label for="">News letter</label><br />
-    <input type="radio" value="Sim" v-model="newsletter" />Sim
-    <input type="radio" value="Ñao" v-model="newsletter" />Ñao
-    <br>
-    {{newsletter}}
-  </div>
-<br>
-<br>
-<div>
-  <label for="">Contrato</label><br />
-  <input type="checkbox" v-model="contract" />Acpeta nuestros terminos
-  
-  <br>
-  {{contract}}
-</div>
-<br>
-<br>
-<div>
-  <label for="">Varios checkbox</label><br />
-  <input type="checkbox" value="Azul" v-model="colors" />Azul
-  <input type="checkbox" value="Amarillo" v-model="colors" />Amarillo
-  <br>
-  {{colors}}
-</div>
-
 </template>
 
 <script>
@@ -47,13 +16,24 @@ export default {
   name: "App",
   components: {},
   data() {
-    return {
-      name: "Angel",
-      sports: "futbol",
-      newsletter:'',
-      contract:true,
-      colors:[]
-    };
+    return {};
+  },
+  methods: {
+    onClick($evt) {
+      console.log("click",$evt);
+    },
+    onMouseOver($evt) {
+      console.log("mouse over",$evt);
+    },
+    onMouseOut($evt) {
+      console.log("mouse out",$evt);
+    },
+    onSubmit(){
+      console.log("submit");
+    },
+    onKeyUp($evt){
+      console.log("onKeyUp",$evt);
+    }
   },
 };
 </script>
