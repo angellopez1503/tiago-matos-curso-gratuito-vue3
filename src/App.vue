@@ -1,80 +1,65 @@
 <template>
   <div class="container">
-    <br>
-    <input 
-      type="text"
-      v-model="name"
-    >
-    <br>
-    {{ name }}
-    <br><br>
-    <input 
-      type="text"
-      v-model="user.first_name"
-      ><br>
-    <input 
-      type="text"
-      v-model="user.last_name"
-      ><br>
-      {{ user.first_name }} {{user.last_name}}
-
-    <br><br><br>
-    <select v-model="pageCount">
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="15">15</option>
-    </select><br>
-
-    {{pageCount}}
-
+    <the-header v-if="showHeader"></the-header>
+    <h1>Hello World</h1>
+   {{name}}<br>
+   <input type="text" v-model="name">
+   <button @click="showHeader = !showHeader" >Activar / Desactivar</button>
   </div>
 </template>
 
 <script>
+  import TheHeader from '@/components/TheHeader.vue'
 export default {
   name: "App",
-  components: {},
+  components: {
+    TheHeader
+  },
   data() {
-    return {
-     name:'',
-     pageCount:5,
-     user:{
-      first_name:'',
-      last_name:''
-     }
+    return { 
+      name:"Angel",
+      showHeader:true
     };
   },
-  watch:{
-    name(vl){
-      // console.log(newValue,oldValue);
-      if(vl.length >=3){
-      this.saveUserName()
-      }
-    },
-    pageCount(){
-      this.changePage()
-    },
-    user:{
-      handler(item){
-        console.log('User alterado');
-        if(item.first_name.length>3){
-          console.log("error");
-          
-        }
-      },
-      deep:true
-    }
-  },
-  methods:{
-    saveUserName(){
-        console.log(this.name);
-      
-    },
-    changePage(){
-      console.log('Ajax changePage')
-    }
     
-  }
+
+    // beforeUpdate(){
+    //     console.log("beforeUpdate",this.name)
+    // },
+
+    // updated(){
+    //   console.log("updated",this.name)
+    // }
+
+
+
+  // beforeCreate(){
+  //  console.log("beforeCreate")
+  //  console.log('Estado : ',this.name);
+  //  console.log("DOM",this.$el)
+  // },
+  // created(){
+  //   console.log("created");
+  //   console.log('Estado : ',this.name);
+  //   console.log("DOM",this.$el)
+  // },
+  // beforeMount(){
+  //   console.log("beforeAmount");
+  //   console.log('Estado : ',this.name);
+  //   console.log("DOM",this.$el)
+  // },
+  // mounted(){
+  //   console.log("mounted");
+  //   console.log('Estado : ',this.name);
+  //   console.log("DOM",this.$el)
+  // },
+  // beforeUnmounted(){
+  //   console.log("beforeUnmounted");
+  // },
+  // unmounted(){
+  //   console.log("unmounted");
+  // }
+  
   
 };
 </script>
